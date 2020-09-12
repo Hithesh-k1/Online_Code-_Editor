@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+
+
+import HtmlEditor from "./components/codeEditor.js/htmlEditor";
+import CssEditor from "./components/codeEditor.js/cssEditor";
+import JavascriptEditor from "./components/codeEditor.js/javascriptEditor";
+import Output from "./components/output";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="playground">
+        <HtmlEditor />
+        <CssEditor />
+        <JavascriptEditor />
+        <Output />
+      </section>
     </div>
   );
 }
