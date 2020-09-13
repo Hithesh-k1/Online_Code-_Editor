@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/mode/css/css';
-import '../../App.css'
+import { Controlled as CodeMirror } from "react-codemirror2";
+import "codemirror/mode/css/css";
+import "../../App.css";
 
 
 export default class CssEditor extends Component {
@@ -30,7 +30,9 @@ export default class CssEditor extends Component {
             ...codeMirrorOptions,
           }}
           onBeforeChange={(editor, data, css) => {
-            this.setState({ css });
+            this.setState({ css }, () => {
+              this.props.onCssChange(css);
+            });
           }}
         />
       </div>

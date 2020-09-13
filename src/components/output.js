@@ -1,12 +1,35 @@
 import React, { Component } from "react";
-import '../App.css'
-
-
+import "../App.css";
+import HtmlEditor from "./codeEditor.js/htmlEditor";
+import CssEditor from "./codeEditor.js/cssEditor";
+import JavascriptEditor from "./codeEditor.js/javascriptEditor";
 
 export default class output extends Component {
+  constructor() {
+    super();
+    this.state = {
+      html: "",
+      css: "",
+      js: "",
+    };
+  }
+
+  onHtmlChange = (e) => {
+    this.setState({ html: e });
+  };
+  onCssChange = (e) => {
+    this.setState({ css: e });
+  };
+  onJsChange = (e) => {
+    this.setState({ js: e });
+  };
+
+  componentDidUpdate() {
+    this.runCode();
+  }
+
   runCode = () => {
     const { html, css, js } = this.state;
-
     const iframe = this.refs.iframe;
     const document = iframe.contentDocument;
     const documentContents = `
@@ -38,10 +61,13 @@ export default class output extends Component {
 
   render() {
     return (
-     <>
-          <section className="result">
-            <iframe title="result" className="iframe" ref="iframe" />
-          </section>
+      <>
+        <HtmlEditor onHtmlChange={this.onHtmlChange} />
+        <CssEditor onCssChange={this.onCssChange} />
+        <JavascriptEditor onJsChange={this.onJsChange} />
+        <section className="result">
+          <iframe title="result" className="iframe" ref="iframe" />
+        </section>
       </>
     );
   }

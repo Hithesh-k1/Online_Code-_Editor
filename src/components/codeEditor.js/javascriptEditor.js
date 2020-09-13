@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/mode/javascript/javascript';
-import '../../App.css'
+import { Controlled as CodeMirror } from "react-codemirror2";
+import "codemirror/mode/javascript/javascript";
+import "../../App.css";
 
 export default class JavascriptEditor extends Component {
   constructor() {
@@ -29,7 +29,9 @@ export default class JavascriptEditor extends Component {
             ...codeMirrorOptions,
           }}
           onBeforeChange={(editor, data, js) => {
-            this.setState({ js });
+            this.setState({ js }, () => {
+              this.props.onJsChange(js);
+            });
           }}
         />
       </div>

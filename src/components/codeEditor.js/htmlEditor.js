@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/mode/htmlmixed/htmlmixed';
-
-import '../../App.css'
+import { Controlled as CodeMirror } from "react-codemirror2";
+import "codemirror/mode/htmlmixed/htmlmixed";
+import "../../App.css";
 
 export default class HtmlEditor extends Component {
   constructor() {
@@ -11,6 +10,9 @@ export default class HtmlEditor extends Component {
       html: "",
     };
   }
+
+  componentDidUpdate = () => {};
+
   render() {
     const { html } = this.state;
 
@@ -31,7 +33,9 @@ export default class HtmlEditor extends Component {
               ...codeMirrorOptions,
             }}
             onBeforeChange={(editor, data, html) => {
-              this.setState({ html });
+              this.setState({ html }, () => {
+                this.props.onHtmlChange(html);
+              });
             }}
           />
         </div>
