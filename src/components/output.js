@@ -3,7 +3,8 @@ import "../App.css";
 import HtmlEditor from "./codeEditor.js/htmlEditor";
 import CssEditor from "./codeEditor.js/cssEditor";
 import JavascriptEditor from "./codeEditor.js/javascriptEditor";
-
+import DownloadButton from "./DownloadButton";
+import UploadButton from "./uploadButton";
 export default class output extends Component {
   constructor() {
     super();
@@ -60,12 +61,17 @@ export default class output extends Component {
   };
 
   render() {
+    const { html, css, js } = this.state;
+
     return (
       <>
         <HtmlEditor onHtmlChange={this.onHtmlChange} />
         <CssEditor onCssChange={this.onCssChange} />
         <JavascriptEditor onJsChange={this.onJsChange} />
         <section className="result">
+          <DownloadButton html={html} css={css} js={js} />
+          <br/>
+          <UploadButton/>
           <iframe title="result" className="iframe" ref="iframe" />
         </section>
       </>
